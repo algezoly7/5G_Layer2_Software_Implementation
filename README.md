@@ -1,8 +1,8 @@
-# **1. Project Overview** {#project-overview}
+# **1. Project Overview** 
 
 This project simulates the 5G New Radio (5G NR) User Plane Layer 2 protocol stack from the User Equipment (UE) perspective. It models the complete data path --- from raw IP packet generation through the full protocol chain and back --- covering RACH, PDCP, RLC, and MAC layers with HARQ and ARQ error recovery mechanisms.
 
-# **2. Required Source Files** {#required-source-files}
+# **2. Required Source Files** 
 
 The project consists of seven files. All seven files must reside in the same directory. There are no subdirectories, Makefiles, or CMake files required --- the project compiles with a single command.
 
@@ -17,9 +17,9 @@ The project consists of seven files. All seven files must reside in the same dir
 | **channel.h**      | Uu air interface: 30% loss + MAC grant picker       |
 |                    |                                                     |
 
-# **3. Software Environment Requirements** {#software-environment-requirements}
+# **3. Software Environment Requirements** 
 
-## **3.1 Compiler** {#compiler}
+## **3.1 Compiler** 
 
 The project requires a C++ compiler supporting at least the C++11 standard. No third-party libraries are used --- only the C++ Standard Library and C Standard Library headers.
 
@@ -27,7 +27,7 @@ The project requires a C++ compiler supporting at least the C++11 standard. No t
 
 The code is fully cross-platform. Instructions are provided below for Linux, macOS, and Windows.
 
-## **3.3 No External Dependencies** {#no-external-dependencies}
+## **3.3 No External Dependencies** 
 
 The project intentionally uses zero external libraries. Every header used is part of the C++11 standard:
 
@@ -53,9 +53,9 @@ The project intentionally uses zero external libraries. Every header used is par
 >
 > \<ctime\> --- time()
 
-# **4. Step-by-Step Setup Instructions** {#step-by-step-setup-instructions}
+# **4. Step-by-Step Setup Instructions** 
 
-## **4.1 Linux --- Ubuntu / Debian** {#linux-ubuntu-debian}
+## **4.1 Linux --- Ubuntu / Debian** 
 
 ### **Step 1: Install GCC**
 
@@ -91,7 +91,7 @@ Verify:
 
 > ./sim5g
 
-**4.2 Linux --- Fedora / RHEL / CentOS**
+## **4.2 Linux --- Fedora / RHEL / CentOS**
 
 ### **Step 1: Install GCC**
 
@@ -105,7 +105,7 @@ Verify:
 
 Steps 2--5 are identical to section 4.1 above.
 
-**4.3 macOS**
+## **4.3 macOS**
 
 ### **Step 1: Install Xcode Command Line Tools**
 
@@ -130,11 +130,11 @@ Same as section 4.1 Steps 2--3.
 | **Homebrew GCC:** If you prefer GCC on macOS: brew install gcc, then use g++-13 (or the version installed) instead of clang++. |
 | ------------------------------------------------------------------------------------------------------------------------------ |
 
-**4.4 Windows**
+## **4.4 Windows**
 
-### **Option A --- MinGW-w64 (Recommended for Command Line)** {#option-a-mingw-w64-recommended-for-command-line}
+### **Option A --- MinGW-w64 (Recommended for Command Line)** 
 
-1.  Install MinGW-w64 from [[https://winlibs.com]{.underline}](https://winlibs.com) or via MSYS2 (pacman -S mingw-w64-x86_64-gcc).
+1.  Install MinGW-w64 from [[https://winlibs.com]](https://winlibs.com) or via MSYS2 (pacman -S mingw-w64-x86_64-gcc).
 
 2.  Add the MinGW bin directory to your PATH environment variable.
 
@@ -145,7 +145,7 @@ Same as section 4.1 Steps 2--3.
 > g++ -std=c++11 -O2 -Wall -o sim5g.exe main.cpp
 > sim5g.exe
 
-### **Option B (Recommended) --- Visual Studio 2017 or Later** {#option-b-recommended-visual-studio-2017-or-later}
+### **Option B (Recommended) --- Visual Studio 2017 or Later** 
 
 1.  Open Visual Studio and create a new Empty C++ Project.
 
@@ -157,16 +157,16 @@ Same as section 4.1 Steps 2--3.
 
 5.  Run with Ctrl+F5.
 
-**5. Runtime Behaviour & Configuration**
+# **5. Runtime Behaviour & Configuration**
 
-## **5.1 Environment Variables** {#environment-variables}
+## **5.1 Environment Variables** 
 
 This project does not define application-level environment variables. However, one system environment variable must be configured on Windows before the compiler can be used: the PATH variable must include the MinGW bin directory (e.g. C:\mingw64\bin) so that g++ is accessible from the command line. On Linux and macOS the compiler is installed system-wide and no PATH change is needed. All other project configuration is done by editing constants directly in the source files.
 
 | **Info:** The simulation is seeded with std::chrono::high_resolution_clock to ensure different random outcomes on each run --- unlike srand(time(0)) which has only 1-second resolution. |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 
-**5.2 Configurable Constants**
+## **5.2 Configurable Constants**
 
 The following constants can be modified in the source files to adjust simulation behaviour. No recompilation flags are needed --- edit the value and recompile.
 
@@ -180,7 +180,7 @@ The following constants can be modified in the source files to adjust simulation
 | **Packet count (gen)** | main.cpp  | 5          | Number of IP packets to generate and simulate                |
 | **xorKey(PDCPLayer)**  | main.cpp  | 0xAB       | XOR ciphering key (NEA2 simulation)                          |
 
-**5.3 MAC Scheduler Grant Distribution**
+## **5.3 MAC Scheduler Grant Distribution**
 
 The simulated gNB scheduler (pickTBGrant() in channel.h) assigns Transport Block sizes using a weighted distribution:
 
